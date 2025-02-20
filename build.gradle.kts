@@ -1,0 +1,26 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.compose) apply false
+}
+
+buildscript {
+    val kotlinVersion by extra("1.8.10")
+
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://repo.spring.io/plugins-release/")
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.8.1") //This should match the toml file for agp version
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:\$kotlinVersion")
+    }
+}
+
+
+
+tasks.register<Delete>("clean") {
+    delete(rootProject.buildDir)
+}
